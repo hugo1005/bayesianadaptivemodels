@@ -12,7 +12,7 @@ as a problem in which epsilon_{t} = Y_{t}  - F(Y,T) where Y_{t} is observed from
 
 ## Installing the package
 ```
-python -m pip install git+https://github.com/hugo1005/bayesian-adaptive-models.git
+python -m pip install git+https://github.com/hugo1005/bayesianadaptivemodels.git
 ```
 
 ## Specifying Models
@@ -65,6 +65,10 @@ Fitting models can be conducted using the following process, note that the backe
 so trace objects returned will be the same as the PyMc3 API.
 
 ```
+import pymc3 as pm
+import numpy as np
+from bayesianadaptivemodels import adaptive_models as am
+
 dgp = """
 Y_{t} = p_1 * Y_{t-1} + p_2 * Y_{t-7} + p_3 * Y_{t-8} + epsilon_1;
 """
@@ -72,13 +76,13 @@ Y_{t} = p_1 * Y_{t-1} + p_2 * Y_{t-7} + p_3 * Y_{t-8} + epsilon_1;
 rho = 0.1
 gamma = 0.5
 parameter_values = {'p_1': gamma, 'p_2': rho, 'p_3': - 1 * rho * gamma}
-datagen = dg.DataGenerationProcess(dgp, parameter_values, sigma=0.1)
+datagen = am.DataGenerationProcess(dgp, parameter_values, sigma=0.1)
 
 Y = np.array(datagen.run_for_n_iters(400,200)['Y'])
 Y_train = Y[:200]
 Y_test = Y[200:]
 
-atsm = dg.AdaptiveTimeSeriesModel(dgp, {'p_1': 0, 'p_2': 0, 'p_3': 0})
+atsm = am.AdaptiveTimeSeriesModel(dgp, {'p_1': 0, 'p_2': 0, 'p_3': 0})
 atsm.create_model(Y_train)
 trace = atsm.sample(draws=6000, chains=4)
 pm.summary(trace)
