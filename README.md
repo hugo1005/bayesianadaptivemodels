@@ -10,6 +10,9 @@ This procedure does not require the likelihood of these sparse parameter models 
 the residuals / errors of such a model be distributed normally and thus bayesian methods can be applied by treating Y_{t} = F(Y,T) + epsilon_{t}
 as a problem in which epsilon_{t} = Y_{t}  - F(Y,T) where Y_{t} is observed from data and F(Y,T) is the sparse functional form with observations Y for t in T = {1,...,t-1} with parameter values obtained NUTS / other specified sampling procedure. Under this framework the parameters will converge to the true distribution so long as the functional form is correct and the errors are in fact normally distributed.
 
+## Warning
+This package is in development, subject to modification and further testing.
+
 ## Installing the package
 ```
 python -m pip install git+https://github.com/hugo1005/bayesianadaptivemodels.git
