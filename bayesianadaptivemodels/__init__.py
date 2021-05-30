@@ -1,1 +1,1 @@
-from bat import *
+from bayesianadaptivemodels import adaptive_models
