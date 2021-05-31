@@ -1,5 +1,7 @@
 # Bayesian Adpative Models
 
+[![Github All Releases](https://img.shields.io/github/downloads/hugo1005/bayesianadaptivemodels/total.svg)]()
+
 ## Working with short time series data with complex functional forms
 A sparse time series process is a stochastic sequence whoses functional form has a sparse dependency on high order MA or AR lags. 
 Under the assumption that the data generating process dependency structure is known this package provides a method for bayesian estimation
